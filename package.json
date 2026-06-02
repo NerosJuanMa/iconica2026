@@ -4,6 +4,18 @@
   "description": "Esta es una aplicación web local desarrollada con **Node.js** y **Express** para la planificación, organización y asignación del personal de limpieza posterior a los conciertos del festival. Los datos se gestionan y persisten de forma dinámica utilizando un archivo **JSON** como base de datos local.",
   "main": "app.js",
   "type":"module",
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
@@ -15,3 +27,5 @@
     "express": "^5.2.1"
   }
 }
+
+
