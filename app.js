@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 3000;
+// const PORT = 3000;
 
 // Configurar __dirname en entornos de módulos ES (ESM)
 const __filename = fileURLToPath(import.meta.url);
@@ -79,6 +79,8 @@ app.post('/guardar', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor de limpieza corriendo en http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Servidor de limpieza corriendo en http://localhost:${PORT}`);
+// });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => { console.log(`Servidor en puerto ${PORT}`); });
