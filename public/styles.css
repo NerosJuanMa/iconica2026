@@ -6,10 +6,10 @@ body {
     background-color: #f0f3f5;
     color: #333;
 }
-img{
-        display:block;
-        width: 25%;
-        margin: 0 auto;
+img {
+    display: block;
+    width: 25%;
+    margin: 0 auto;
 }
 h1 {
     color: #2c3e50;
@@ -26,7 +26,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 25px;
-    margin-bottom: 100px; /* Espacio para que el botón flotante no tape contenido */
+    margin-bottom: 120px; /* Incrementado para dar espacio a la barra de botones inferior */
 }
 
 /* Diseño de la Tarjeta Individual */
@@ -83,7 +83,7 @@ h1 {
     font-size: 1.25rem;
     color: #16a085;
     line-height: 1.3;
-    min-height: 2.6rem; /* Mantiene alineadas las cajas aunque el nombre sea corto */
+    min-height: 2.6rem;
 }
 
 /* Formulario en Dos Columnas */
@@ -109,11 +109,11 @@ h1 {
 /* Textareas configurados para varias líneas */
 .columna textarea {
     width: 100%;
-    height: 100px; /* Altura generosa por defecto */
+    height: 100px;
     padding: 10px;
     border: 1px solid #dcdde1;
     border-radius: 6px;
-    resize: vertical; /* Permite al usuario estirarlo hacia abajo si lo necesita */
+    resize: vertical;
     font-family: inherit;
     font-size: 0.9rem;
     box-sizing: border-box;
@@ -127,14 +127,28 @@ h1 {
     background-color: #ffffff;
 }
 
-/* Botón Guardar Flotante / Fijado abajo a la derecha */
-.btn-guardar {
+/* --- 🔘 CONFIGURACIÓN DE LOS BOTONES FLOTANTES (CORREGIDO) --- */
+.grupo-botones-flotantes {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;              /* Anclado a la izquierda */
+    right: 30px;             /* Anclado a la derecha */
+    display: flex;
+    justify-content: space-between; /* Empuja un botón a cada extremo */
+    z-index: 1000;
+    pointer-events: none;    /* Evita que el contenedor invisible tape clics tras él */
+}
+
+/* Permitir clics de nuevo únicamente sobre los botones reales */
+.grupo-botones-flotantes button {
+    pointer-events: auto;
+}
+
+/* Botón Guardar */
+.btn-guardar {
     background-color: #27ae60;
     color: white;
-    padding: 15px 30px;
+    padding: 15px 25px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -142,10 +156,61 @@ h1 {
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(39, 174, 96, 0.4);
     transition: background-color 0.2s, transform 0.2s;
-    z-index: 1000;
 }
 
 .btn-guardar:hover {
     background-color: #219a52;
     transform: scale(1.05);
+}
+
+/* Botón Imprimir / PDF */
+.btn-imprimir {
+    background-color: #2980b9;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(41, 128, 185, 0.4);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-imprimir:hover {
+    background-color: #2471a3;
+    transform: scale(1.05);
+}
+
+/* --- 🖨️ REGLAS EXCLUSIVAS PARA LA EXPORTACIÓN A PDF --- */
+@media print {
+    .grupo-botones-flotantes {
+        display: none !important;
+    }
+
+    body {
+        background-color: #ffffff !important;
+        padding: 0 !important;
+        font-size: 12pt;
+    }
+
+    .contenedor-tarjetas {
+        display: block !important;
+        margin-bottom: 0 !important;
+    }
+
+    .tarjeta-dia {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+        margin-bottom: 20px !important;
+    }
+
+    .columna textarea {
+        border: none !important;
+        background: transparent !important;
+        resize: none !important;
+        padding: 0 !important;
+        height: auto !important;
+    }
 }
