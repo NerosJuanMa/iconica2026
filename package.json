@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Esta es una aplicación web local desarrollada con **Node.js** y **Express** para la planificación, organización y asignación del personal de limpieza posterior a los conciertos del festival. Los datos se gestionan y persisten de forma dinámica utilizando un archivo **JSON** como base de datos local.",
   "main": "app.js",
-  "type":"module",
+  "type": "module",
   "builds": [
     {
       "src": "app.js",
@@ -25,7 +25,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^5.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NerosJuanMa/iconica2026.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NerosJuanMa/iconica2026/issues"
+  },
+  "homepage": "https://github.com/NerosJuanMa/iconica2026#readme"
 }
-
-
